@@ -133,18 +133,12 @@ func Search(url string) string  {
 			preNode2, ok := preNode.folw[b]
 			isDot := b == '.'
 			if !ok {
-				if !isDot {
-					if preDotIdx != -1 {
-						mostRightSuffixIdx = preDotIdx
-						break
-					} else {
-						return ""
-					}
-				}
-				if !preNode.end {
+				if preDotIdx != -1 {
+					mostRightSuffixIdx = preDotIdx
+					break
+				} else {
 					return ""
 				}
-				break
 			} else {
 				if isDot {
 					if preNode.end {

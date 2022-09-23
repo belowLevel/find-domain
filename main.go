@@ -7,6 +7,7 @@ import (
 
 func main()  {
 	search.Init("C:\\Users\\tanmingxin\\Desktop\\qwqw\\click-href2\\public_suffix_list.dat")
-	log.Printf(search.Search("http://www.hao123.com/"))
+	log.Printf(search.Search("mtalk.google.com"))
+	log.Printf(search.Search("www.hao123.com"))
 	log.Printf(search.Search("http://www.hao123.com"))
 }
