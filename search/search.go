@@ -104,7 +104,7 @@ func Search(url string) string  {
 	poundIdx := strings.Index(url[from:], "#")
 	questIdx := strings.Index(url[from:], "?")
 	slashIdx := strings.Index(url[from:], "/")
-	minIdx := urlLen
+	minIdx := urlLen - from
 	if poundIdx != -1 && minIdx > poundIdx {
 		minIdx = poundIdx
 	}
