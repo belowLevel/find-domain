@@ -121,7 +121,7 @@ func Search(url string) string  {
 	var preNode *node = nil
 	var ok bool = false
 	var mostRightSuffixIdx = 0
-	var preDotIdx = -1
+	var preFuffixIdx = -1
 	for _, b := range bytes {
 		mostRightSuffixIdx++
 		if preNode == nil {
@@ -133,26 +133,28 @@ func Search(url string) string  {
 			preNode2, ok := preNode.folw[b]
 			isDot := b == '.'
 			if !ok {
-				if preDotIdx != -1 {
-					mostRightSuffixIdx = preDotIdx
+				if preNode.end {
 					break
-				} else {
-					return ""
 				}
+				if preFuffixIdx != -1 {
+					mostRightSuffixIdx = preFuffixIdx
+					break
+				}
+				return ""
 			} else {
-				if isDot {
-					if preNode.end {
-						preDotIdx = mostRightSuffixIdx
-					}
+				if isDot && preNode.end {
+					preFuffixIdx = mostRightSuffixIdx
 				}
 				preNode = preNode2
 			}
 		}
 	}
 	subDomainLen := len(subDomain)
-	if mostRightSuffixIdx == subDomainLen {
-		return ""
+
+	if preFuffixIdx != -1 {
+		mostRightSuffixIdx = preFuffixIdx
 	}
+
 	mostLeftSuffixIdx := subDomainLen - mostRightSuffixIdx
 	for dotIdx:=mostLeftSuffixIdx -1; dotIdx >= 0; dotIdx -- {
 		if subDomain[dotIdx] == '.' {

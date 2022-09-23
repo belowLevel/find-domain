@@ -10,4 +10,8 @@ func main()  {
 	log.Printf(search.Search("mtalk.google.com"))
 	log.Printf(search.Search("www.hao123.com"))
 	log.Printf(search.Search("http://www.hao123.com"))
+	log.Printf(search.Search("google.com"))
+	log.Printf(search.Search("www.ls.graphics"))
+	log.Printf(search.Search("img.tg"))
+	log.Printf(search.Search(" grs.dbankcloud.cn11"))
 }
