@@ -115,6 +115,7 @@ func Search(url string) string  {
 		minIdx = slashIdx
 	}
 	subDomain := url[from:from + minIdx]
+	subDomain = strings.TrimSpace(subDomain)
 	bytes := []byte(subDomain)
 	reverse(bytes)
 
@@ -132,28 +133,20 @@ func Search(url string) string  {
 		} else {
 			preNode2, ok := preNode.folw[b]
 			isDot := b == '.'
-			if !ok {
-				if preNode.end {
-					break
-				}
-				if preFuffixIdx != -1 {
-					mostRightSuffixIdx = preFuffixIdx
-					break
-				}
-				return ""
-			} else {
-				if isDot && preNode.end {
-					preFuffixIdx = mostRightSuffixIdx
-				}
-				preNode = preNode2
+			if isDot && preNode.end {
+				preFuffixIdx = mostRightSuffixIdx
 			}
+			if !ok {
+				break
+			}
+			preNode = preNode2
 		}
 	}
-	subDomainLen := len(subDomain)
-
-	if preFuffixIdx != -1 {
-		mostRightSuffixIdx = preFuffixIdx
+	if preFuffixIdx == -1 {
+		return ""
 	}
+	mostRightSuffixIdx = preFuffixIdx
+	subDomainLen := len(subDomain)
 
 	mostLeftSuffixIdx := subDomainLen - mostRightSuffixIdx
 	for dotIdx:=mostLeftSuffixIdx -1; dotIdx >= 0; dotIdx -- {

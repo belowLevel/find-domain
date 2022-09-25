@@ -14,4 +14,7 @@ func main()  {
 	log.Printf(search.Search("www.ls.graphics"))
 	log.Printf(search.Search("img.tg"))
 	log.Printf(search.Search(" grs.dbankcloud.cn11"))
+	log.Printf(search.Search(" firstnationsgift.org.ubuntu20"))
+	log.Printf(search.Search(" ww.blogspot.co.il"))
+	log.Printf(search.Search("o.il"))
 }
