@@ -1,20 +1,30 @@
 package main
 
 import (
+	"bufio"
 	"github.com/1121170088/find-domain/search"
-	"log"
+	"os"
+	"strings"
 )
 
 func main()  {
-	search.Init("C:\\Users\\tanmingxin\\Desktop\\qwqw\\click-href2\\public_suffix_list.dat")
-	log.Printf(search.Search("mtalk.google.com"))
-	log.Printf(search.Search("www.hao123.com"))
-	log.Printf(search.Search("http://www.hao123.com"))
-	log.Printf(search.Search("google.com"))
-	log.Printf(search.Search("www.ls.graphics"))
-	log.Printf(search.Search("img.tg"))
-	log.Printf(search.Search(" grs.dbankcloud.cn11"))
-	log.Printf(search.Search(" firstnationsgift.org.ubuntu20"))
-	log.Printf(search.Search(" ww.blogspot.co.il"))
-	log.Printf(search.Search("o.il"))
+	search.Init("public_suffix_list.dat")
+
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+		line := strings.TrimSpace(scanner.Text())
+		if line == "" {
+			continue
+		}
+		domain := search.Search(line)
+		if domain == "" {
+			continue
+		}
+		os.Stdout.WriteString(domain)
+		os.Stdout.WriteString("\n")
+	}
+
+	if scanner.Err() != nil {
+		// Handle error.
+	}
 }
