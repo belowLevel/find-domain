@@ -1,3 +1,3 @@
-module github.com/1121170088/find-domain
+module github.com/belowLevel/find-domain
 
 go 1.21

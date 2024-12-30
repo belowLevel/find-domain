@@ -2,12 +2,12 @@ package main
 
 import (
 	"bufio"
-	"github.com/1121170088/find-domain/search"
+	"github.com/belowLevel/find-domain/search"
 	"os"
 	"strings"
 )
 
-func main()  {
+func main() {
 	search.Init("public_suffix_list.dat")
 
 	scanner := bufio.NewScanner(os.Stdin)
